@@ -4,6 +4,6 @@ from . import forms
 from django.views.generic import CreateView
 
 class Register(CreateView):
-    form_class = forms.UserRegisterForm()
+    form_class = forms.UserCreateForm
     success_url = reverse_lazy('login')
     template_name = 'members/register.html'
