@@ -1,4 +1,4 @@
-#Groups Models
+#Members Models
 from django.db import models
 from django.utils.text import slugify
 import misaka
@@ -23,7 +23,7 @@ class Group(models.Model):
         self.description_html = misaka.html(self.description)
         super().save(*args,**kwargs)
     def get_absolute_url(self):
-        return reverse('members:single',kwargs={'slug':self.slug})
+        return reverse('groups:single',kwargs={'slug':self.slug})
 
     class Meta:
         ordering =['name']
