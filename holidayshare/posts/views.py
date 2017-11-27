@@ -2,7 +2,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.views import generic
-django django.http import Http404
+from django.http import Http404
 from braces.views import SelectRelatedMixin
 from . import models
 from . import forms
@@ -24,7 +24,6 @@ class UserPost(generic.ListView):
 
         except User.DoestNotExist:
             raise Http404
-
         else:
             return self.post_user.posts.all()
 
@@ -36,7 +35,7 @@ class UserPost(generic.ListView):
 
 class PostDetail(SelectRelatedMixin, generic.DeleteView):
     model = models.Post
-    SelectRelatedMixin('user','group')
+    select_related = ("user", "group")
 
     def get_queryset(self):
         queryset = super().get_queryset()
