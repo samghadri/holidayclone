@@ -1,7 +1,7 @@
 {% extends "groups/group_base.html" %}
 {% block pregroup %}
 <h1>{{group.name}}</h1>
-  <h2>Number of Members: {{ groups.members.count }}</h2>
+  <h2>Number of Members: {{ group.members.count }}</h2>
     <div class="content">
     {% if user in group.members.all %}
     <a href="{% url 'groups:leave' slug=group.slug %}" class='btn btn-lg btn-fill btn-warning'>
@@ -15,7 +15,7 @@
 {% endblock %}
 {% block group_content %}
 <div class="col-md-8">
-  {% if group.posts.count==0 %}
+  {% if group.posts.count == 0 %}
   <h2>This is a new Group! Start Sharing you Memories</h2>
   {% else %}
   {% for post in group.posts.all %}

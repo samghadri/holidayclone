@@ -5,14 +5,14 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib import messages
 from . models import Group,GroupMember
-
+from . import models
 
 class BuildGroup(LoginRequiredMixin,generic.CreateView):
     fields = ('name', 'description')
     model = Group
 
 
-class SingleGroup(generic.DeleteView):
+class SingleGroup(generic.DetailView):
     model = Group
 
 
