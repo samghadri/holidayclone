@@ -1,1 +1,5 @@
 holidayshare/holidayshare/secret_key.py
+.idea/
+venv/
+.DS_Store
+*.db
