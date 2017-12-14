@@ -14,16 +14,20 @@ class Post(models.Model):
     message = models.TextField(max_length=500)
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group,related_name='posts',null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True, unique=True)
 
-    def __str__(self):
-        return self.message
 
     def save(self, *args, **kwargs):
         self.message_html = misaka.html(self.message)
+        self.slug = slugify(self.message)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('posts:single',kwargs={'username':self.user.username,'pk':self.pk})
+        return reverse('posts:single', kwargs={'slug': self.slug})
+
+
+    def __str__(self):
+        return self.message
 
     class Meta:
         ordering =['created_date']

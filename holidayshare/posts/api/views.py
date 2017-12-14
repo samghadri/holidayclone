@@ -12,9 +12,9 @@ class PostListApi(generics.ListAPIView):
 class PostDetailApi(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
-    lookup_field = 'username'
+    lookup_field = 'slug'
 
 
 class PostCreateApi(generics.CreateAPIView):
     queryset = Post.objects.all()
-    serializer_class = PostDetailSerializer
+    serializer_class = PostCreateSerializer
