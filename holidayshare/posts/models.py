@@ -6,15 +6,16 @@ import misaka
 from groups.models import Group
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from django.utils.text import slugify
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User,related_name='posts')
-    created_date = models.DateTimeField(auto_now =True)
+    user = models.ForeignKey(User,related_name='posts', null=True)
+    created_date = models.DateTimeField(auto_now =True, null=True)
     message = models.TextField(max_length=500)
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group,related_name='posts',null=True,blank=True)
-    slug = models.SlugField(allow_unicode=True, unique=True)
+    slug = models.SlugField(allow_unicode=True, null=True, unique = True)
 
 
     def save(self, *args, **kwargs):
